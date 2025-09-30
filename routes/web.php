@@ -15,13 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('tasks.index');
+    return view('welcome');
 });
-
-// We can use Route::resource for simpler CRUD routes,
-// but since we only need index, create, store, and destroy,
-// we'll specify them explicitly for clarity and simplification.
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index'); // VIEW ALL
-Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create'); // ADD FORM
-Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store'); // ADD SUBMISSION
-Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy'); // DELETE
