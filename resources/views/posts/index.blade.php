@@ -10,8 +10,7 @@
 <body>
     <h1>Mūsu Bloga Ziņas</h1>
 
-    {{-- Jaunā saite --}}
-    <a href="{{ url('/posts/create') }}">Izveidot jaunu ziņu</a>
+    <a href="{{ route('posts.create') }}">Izveidot jaunu ziņu</a> {{-- Izmantojam nosaukto ceļu --}}
 
     @if ($posts->isEmpty())
         <p>Pagaidām nav nevienas ziņas.</p>
@@ -19,7 +18,8 @@
         <ul>
             @foreach ($posts as $post)
                 <li>
-                    <h2>{{ $post->title }}</h2>
+                    {{-- Unikālā saite uz katru ierakstu --}}
+                    <h2><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></h2>
                     <p>{{ $post->content }}</p>
                     <small>Izveidots: {{ $post->created_at->format('Y-m-d H:i') }}</small>
                 </li>
