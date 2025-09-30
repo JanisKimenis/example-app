@@ -16,12 +16,12 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
-    public function store(){
+    public function store(Request $request){
         $request->validate([
             'title'=>'required|max:255',
             'content' => 'required',
         ]);
-        Posts::create([
+        Post::create([
             'title' => $request->title,
             'content' => $request->content,
         ]);
@@ -29,5 +29,9 @@ class PostController extends Controller
     }
     public function show(Post $post){
         return view('posts.show', ['post' => $post]);
+    }
+    public function destroy_get(Post $post){
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'Ziņa veiksmīgi izdzēsta (GET)!');
     }
 }

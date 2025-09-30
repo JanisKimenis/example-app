@@ -22,6 +22,11 @@
                     <h2><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></h2>
                     <p>{{ $post->content }}</p>
                     <small>Izveidots: {{ $post->created_at->format('Y-m-d H:i') }}</small>
+                    <br>
+                    <a href=
+                    "{{ route('posts.destroy_get', $post->id) }}"
+                        onclick="return confirm('Vai tiešām vēlies izdzēst šo ziņu?');">
+                        Dzēst (GET)</a>
                 </li>
             @endforeach
         </ul>
